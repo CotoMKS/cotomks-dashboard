@@ -2,6 +2,7 @@
   import Clock from "./components/Clock.svelte";
   import Battery from "./components/Battery.svelte";
 
+  let background_image
   if(!localStorage.getItem('background_buffer')) {
     fetch('/1091015.jpg').then(res => {
       return res.blob()
@@ -10,11 +11,12 @@
       file_reader.readAsDataURL(blob)
       file_reader.onload = e => {
         localStorage.setItem('background_buffer', String(e.target.result))
+        background_image = String(e.target.result)
       }
     })
   }
 
-  let background_image = localStorage.getItem('background_buffer')
+  background_image = localStorage.getItem('background_buffer')
 
   let lang = 'id'
 </script>
